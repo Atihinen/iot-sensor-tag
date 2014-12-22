@@ -1,4 +1,7 @@
 ## About 
+This repo is forked from  [IBM Sensor Tag](https://github.com/IBM-Bluemix/iot-sensor-tag
+)
+
 This repo contains the code needed to connect to [IBM's IoT Cloud](https://internetofthings.ibmcloud.com/#/) 
 and publish and retrieve data from a [Texas Instruments Sensor Tag](http://www.ti.com/tool/cc2541dk-sensor).
 
