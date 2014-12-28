@@ -518,3 +518,5 @@ function updateBarometerValue() {
 	var barometer = sensorData.barometer;
 	$("#barometerValue").html(barometer);
 }
+
+

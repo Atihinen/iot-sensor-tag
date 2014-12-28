@@ -1,7 +1,13 @@
 var thermoTresMin = 0;
 var thermoTresMax = 0;
 var $thermoVal;
-var $thermoForm
+var $thermoForm;
+
+
+function writeLog(content){
+	$.get('./log', {'cont':content});
+}
+
 function checkTreshold(treshold, value){
 	var marginMin;
 	var marginMax;
@@ -22,6 +28,7 @@ function checkTreshold(treshold, value){
 				}
 				else if( value >= thermoTresMax || value <= thermoTresMin){
 					$thermoVal.parent().addClass("has-error");
+					writeLog("temp_val-"+value);
 				}
 			}
 			break;

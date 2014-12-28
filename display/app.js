@@ -22,7 +22,7 @@ var path = require('path');
 var macUtil = require('getmac');
 var cfenv = require('cfenv');
 var properties = require('properties');
-
+var fs = require("fs");
 
 var appEnv = cfenv.getAppEnv();
 var instanceId = !appEnv.isLocal ? appEnv.app.instance_id : undefined;
@@ -152,5 +152,16 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort) {
 
   app.get('/', function (req, res) {
     res.sendfile(__dirname + '/public/index.html');
+  });
+
+  app.get('/log', function(req, res){
+    var content = req.params[0];
+    var path = "/tmp/sensor.log";
+    var stream = fs.createWriteStream(path);
+    stream.once('open', function(fd) {
+      stream.write(content+"\n");
+      stream.end();
+    });
+    res.send(200);
   });
 };
