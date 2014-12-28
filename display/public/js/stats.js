@@ -75,7 +75,7 @@ air.onmessage = function(e) {
   //$("#ambientTemp").html("air/ambientTemp :: " + data.d.ambientTemp);
   sensorData.setReading("objectTemp", parseFloat(data.d.objTemp));
   //$("#objectTemp").html("air/objectTemp :: " + data.d.objTemp);
-  $("#thermo-val").val(data.d.ambientTemp);
+  $("#thermo-val").val(data.d.ambientTemp).trigger('change');
   $("#humidity-val").val(data.d.humidity);
   $("#pressure-val").val(data.d.pressure);
   
@@ -243,7 +243,7 @@ Graph3D.prototype.init = function() {
 	this.renderer = new THREE.WebGLRenderer();
 	this.renderer.setSize( 350, 350 );
 	this.renderer.setClearColor(0xffffff, 1);
-	this.domElement.appendChild( this.renderer.domElement );
+	//this.domElement.appendChild( this.renderer.domElement );
 
 	this.camera = new THREE.PerspectiveCamera( 45, 350 / 350, 1, 1000 );
 	this.camera.position.z = 400;
@@ -338,7 +338,7 @@ Graph3D.prototype.updateValue = function(data) {
 	lineGeo.vertices.push(new THREE.Vector3(this.value.x,this.value.y,this.value.z));
 	lineGeo.computeLineDistances();
 	this.valueLine = new THREE.Line(lineGeo, lineMaterial);
-	this.scene.add(this.valueLine);
+	//this.scene.add(this.valueLine);
 
 	this.valueMarker = new THREE.Mesh(new THREE.SphereGeometry(4, 4, 4), new THREE.MeshNormalMaterial());
 	this.valueMarker.position.x = this.value.x;
