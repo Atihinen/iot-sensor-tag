@@ -1,0 +1,21 @@
+.panel-heading-icon {
+	float: right;
+}
+
+.panel-heading {
+	cursor: pointer;
+}
+
+.panel ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.panel ul li {
+	margin-bottom: 0.5em;
+}
+
+nav {
+	padding-left: 1em;
+}

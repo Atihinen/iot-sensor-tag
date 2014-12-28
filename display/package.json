@@ -1,5 +1,5 @@
 {
-   "author": "IBM",
+   "author": "Joonas Jauhiainen",
    "dependencies": {
       "mqtt":"*",
       "sockjs":"*",
@@ -8,9 +8,10 @@
       "express":"*",
       "getmac":"*",
       "cfenv": "*",
-      "properties":"*"
+      "properties":"*",
+      "jquery":"*"
    },
-   "description": "Visualizes data from TI Sensor Tag through various demos.",
-   "license": "IBM",
+   "description": "Based on https://github.com/IBM-Bluemix/iot-sensor-tag/blob/master/subscribe/package.json",
+   "license": "MIT",
    "main": "app.js"
 }

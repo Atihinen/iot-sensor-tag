@@ -68,24 +68,28 @@ air.onopen = function() {
 air.onmessage = function(e) {
   var data = jQuery.parseJSON(e.data);
   sensorData.setReading("barometer", parseFloat(data.d.pressure));
-  $("#barometerPayload").html("air/barometer :: " + data.d.pressure);
+  //$("#barometerPayload").html("air/barometer :: " + data.d.pressure);
   sensorData.setReading("humidity", parseFloat(data.d.humidity));
-  $("#humidityPayload").html("air/humidity :: " + data.d.humidity);
+  //$("#humidityPayload").html("air/humidity :: " + data.d.humidity);
   sensorData.setReading("ambientTemp", parseFloat(data.d.ambientTemp));
-  $("#ambientTemp").html("air/ambientTemp :: " + data.d.ambientTemp);
+  //$("#ambientTemp").html("air/ambientTemp :: " + data.d.ambientTemp);
   sensorData.setReading("objectTemp", parseFloat(data.d.objTemp));
-  $("#objectTemp").html("air/objectTemp :: " + data.d.objTemp);
+  //$("#objectTemp").html("air/objectTemp :: " + data.d.objTemp);
+  $("#thermo-val").val(data.d.ambientTemp);
+  $("#humidity-val").val(data.d.humidity);
+  $("#pressure-val").val(data.d.pressure);
   
 };
 function connectOnClick() {
-	var uuid = document.getElementById('uuid').value;
+	var uuid = document.getElementById('addressid').value;
 	var data = JSON.stringify({"deviceId": uuid});
 	air.send(data);
 	mag.send(data);
 	gyro.send(data);
 	accel.send(data);
-	$('#uuid').hide();
-	$('#uuidConfirm').hide();
+	//$('#uuid').hide();
+	//$('#uuidConfirm').hide();
+	$("#submitted").removeClass("hidden");
 }
 
 

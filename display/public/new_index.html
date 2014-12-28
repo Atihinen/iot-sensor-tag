@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/css/bootstrap-theme.min.class" />
+		<link rel="stylesheet" type="text/css" href="css/display.css" />
+		<script type="text/javascript" src="vendor/js/jquery.min.js"></script>
+		<script type="text/javascript" src="vendor/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/display.js"></script>
+	</head>
+	<body>
+		<nav class="row">
+			<div class="col-md-12 navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#not-yet-implemented">
+					</button>
+					<a class="navbar-brand" href="#">Home</a>
+				</div>
+			</div>
+		</nav>
+		<div class="row" id="not-submmitted">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="jumbotron">
+					<div class="container">
+						<h1>Welcome</h1>
+						<p>Please input mac address of your computer without colons (:) to start application.</p>
+						<div class="form-inline" id="not-submitted-form">
+							<div class="form-group">
+								<label class="sr-only" for="addressid">Address</label>
+								<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon glyphicon-off"></span></div>
+									<input type="text" class="form-control" id="addressid" placeholder="Address" />
+
+								</div>
+							</div>
+							<input type="submit" id="submit-btn" value="Register" class="btn btn-primary"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row hidden" id="submitted">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Tresholds <span class="panel-heading-icon glyphicon glyphicon glyphicon-resize-full"></span>
+					</div>
+					<div class="panel-body" id="treshold-container" style="display: none">
+						<ul>
+							<li>
+								<form id="thermo-treshold">
+									<div class="input-group" title="Temperature">
+										<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/thermo.png" /></span></div>
+										<div class="row">
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-info" id="thermo-min" placeholder="Min" />
+											</div>
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-danger" id="thermo-max" placeholder="Max" />
+											</div>
+											<div class="col-md2">
+												<input type="submit" value="Set" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+								</form>
+							</li>
+							<li>
+								<form id="humidity-treshold">
+									<div class="input-group" title="Humidity">
+										<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/humidity.png" /></span></div>
+										<div class="row">
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-info" id="humidity-min" placeholder="Min" />
+											</div>
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-danger" id="humidity-max" placeholder="Max" />
+											</div>
+											<div class="col-md2">
+												<input type="submit" value="Set" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+								</form>
+							</li>
+							<li>
+								<form id="pressure-treshold">
+									<div class="input-group" title="Pressure">
+										<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/pressure.png" /></span></div>
+										<div class="row">
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-info" id="pressure-min" placeholder="Min" />
+											</div>
+											<div class="col-md-2">
+												<input type="text" class="form-control alert-danger" id="pressure-max" placeholder="Max" />
+											</div>
+											<div class="col-md2">
+												<input type="submit" value="Set" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+								</form>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Sensor data <span class="panel-heading-icon glyphicon glyphicon glyphicon-resize-small"></span>
+					</div>
+					<div class="panel-body" id="sensordata-container">
+						<ul>
+							<li>
+								<div class="input-group" title="Temperature">
+									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/thermo.png" /></span></div>
+									<input type="text" class="form-control" id="thermo-val" placeholder="Value not set" />
+								</div>
+							</li>
+							<li>
+								<div class="input-group" title="Humidity">
+									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/humidity.png" /></span></div>
+									<input type="text" class="form-control" id="humidity-val" placeholder="Value not set" />
+								</div>
+							</li>
+							<li>
+								<div class="input-group" title="Pressure">
+									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/pressure.png" /></span></div>
+									<input type="text" class="form-control" id="pressure-val" placeholder="Value not set" />
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r67/three.js"></script>
+    <script type="text/javascript" src="js/OrbitControls.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+	    <script type="text/javascript" src="https://d1fxtkz8shb9d2.cloudfront.net/websocket-multiplex-0.1.js"></script>
+	    <script type="text/javascript" src="js/stats.js"></script>
+	</body>
+</html>
