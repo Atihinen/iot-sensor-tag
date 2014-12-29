@@ -1,8 +1,13 @@
 var thermoTresMin = 0;
 var thermoTresMax = 0;
 var prevThermoStatus = "success";
+var humidityTresMin = 0;
+var humidityTresMax = 0;
+var prevHumidityStatus = "success";
 var $thermoVal;
 var $thermoForm;
+var $humidityForm;
+var $humidityVal;
 
 
 function writeLog(sensor, value){
@@ -13,7 +18,7 @@ function checkTreshold(treshold, value){
 	var marginMin;
 	var marginMax;
 	var margin = 0.4;
-	value = parseFloat(value);
+	value = parseFloat(value).toFixed(2);
 	switch(treshold){
 		case "thermo":
 			if($thermoForm.find('input[type=submit]').val() == "Defined"){
@@ -39,6 +44,33 @@ function checkTreshold(treshold, value){
 					prevThermoStatus = "error";
 				}
 			}
+			break;
+		case "humidity":
+			if($humidityForm.find('input[type=submit]').val() == "Defined"){
+				$humidityVal.parent().removeClass();
+				$humidityVal.parent().addClass("input-group");
+				marginMax = humidityTresMax - (humidityTresMax*margin);
+				marginMin = humidityTresMin + (humidityTresMin*margin);
+				console.log("Hum "+value+", min: "+marginMin+ ", max: "+marginMax);
+				if (value > marginMin && value < marginMax){
+					$humidityVal.parent().addClass("has-success");
+					if(prevHumidityStatus == "error"){
+						writeLog("humidity", "Recovery: "+value);
+					}
+					prevHumidityStatus = "success";
+				}
+				else if ((value > humidityTresMin && value < marginMin) || (value < humidityTresMax && value > marginMax) ){
+					$humidityVal.parent().addClass("has-warning");
+				}
+				else if( value >= humidityTresMax || value <= humidityTresMin){
+					$humidityVal.parent().addClass("has-error");
+					if(prevHumidityStatus != "error"){
+						writeLog("humidity", value);
+					}
+					prevHumidityStatus = "error";
+				}
+			}
+			
 			break;
 	}
 }
@@ -69,16 +101,18 @@ $(document).ready(function(){
 	var $valueContainer = $("#submitted");
 	var $panelHeading = $(".panel-heading");
 	$thermoVal = $('#thermo-val');
-	var $humidityVal = $('#humidity-val');
+	$humidityVal = $('#humidity-val');
 	var $pressureVal = $('#pressure-val');
 	$thermoForm = $('#thermo-treshold');
-	var $humidityForm = $('#humidity-treshold');
+	$humidityForm = $('#humidity-treshold');
 	var $pressureForm = $('#pressure-treshold');
 	var thermoSet = false;
 	var humiditySet = false;
 	var pressureSet = false;
 	var $thermoMin = $('#thermo-min');
 	var $thermoMax = $('#thermo-max');
+	var $humidityMin = $('#humidity-min');
+	var $humidityMax = $('#humidity-max');
 
 	$submitBtn.on("click", function(){
 		$startContainer.hide();
@@ -132,6 +166,33 @@ $(document).ready(function(){
 		checkTreshold("thermo", $(this).val());
 	});
 
+	$humidityMin.on("keydown",function(){
+		initBtn($(this).parent().parent().parent().parent().find('input[type=submit]'));
+	});
 
+	$humidityMax.on("keydown", function(){
+		initBtn($(this).parent().parent().parent().parent().find('input[type=submit]'));
+	});
+
+	$humidityForm.on("submit", function(){
+		if(isNumber($humidityMin.val())){
+			humidityTresMin = parseFloat($humidityMin.val());	
+		}
+		else {
+			$humidityMin.val(humidityTresMin);
+		}
+		if(isNumber($humidityMax.val())){
+			humidityTresMax = parseFloat($humidityMax.val());
+		}
+		else {
+			$humidityMax.val(humidityTresMax);
+		}
+		setTreshold($(this));
+		return false;
+	});
+
+	$humidityVal.change(function(){
+		checkTreshold("humidity", $(this).val());
+	});
 
 });

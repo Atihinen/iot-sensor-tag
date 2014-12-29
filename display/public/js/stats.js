@@ -76,7 +76,7 @@ air.onmessage = function(e) {
   sensorData.setReading("objectTemp", parseFloat(data.d.objTemp));
   //$("#objectTemp").html("air/objectTemp :: " + data.d.objTemp);
   $("#thermo-val").val(data.d.ambientTemp).trigger('change');
-  $("#humidity-val").val(data.d.humidity);
+  $("#humidity-val").val(data.d.humidity).trigger('change');
   $("#pressure-val").val(data.d.pressure);
   
 };
