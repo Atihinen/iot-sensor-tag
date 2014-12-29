@@ -1,11 +1,12 @@
 var thermoTresMin = 0;
 var thermoTresMax = 0;
+var prevThermoStatus = "success";
 var $thermoVal;
 var $thermoForm;
 
 
-function writeLog(content){
-	$.get('./log', {'cont':content});
+function writeLog(sensor, value){
+	$.get('./log/'+sensor+'/'+value, {});
 }
 
 function checkTreshold(treshold, value){
@@ -22,13 +23,20 @@ function checkTreshold(treshold, value){
 				marginMin = thermoTresMin + (thermoTresMin*margin);
 				if (value > marginMin && value < marginMax){
 					$thermoVal.parent().addClass("has-success");
+					if(prevThermoStatus == "error"){
+						writeLog("thermo", "Recovery: "+value);
+					}
+					prevThermoStatus = "success";
 				}
 				else if ((value > thermoTresMin && value < marginMin) || (value < thermoTresMax && value > marginMax) ){
 					$thermoVal.parent().addClass("has-warning");
 				}
 				else if( value >= thermoTresMax || value <= thermoTresMin){
 					$thermoVal.parent().addClass("has-error");
-					writeLog("temp_val-"+value);
+					if(prevThermoStatus != "error"){
+						writeLog("thermo", value);
+					}
+					prevThermoStatus = "error";
 				}
 			}
 			break;

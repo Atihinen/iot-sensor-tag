@@ -154,14 +154,21 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort) {
     res.sendfile(__dirname + '/public/index.html');
   });
 
-  app.get('/log', function(req, res){
-    var content = req.params[0];
+  app.get('/log/:sensor/:value', function(req, res){
+    var sensor = req.params.sensor;
+    var value = req.params.value;
+    var status = "Error";
+    if (value.indexOf("Recovery") != -1){
+      status = "Recovery";
+    }
+    var content = status+" "+sensor+": "+value;
     var path = "/tmp/sensor.log";
-    var stream = fs.createWriteStream(path);
+    //TODO choose useable DB and use it instead of temp file
+    var stream = fs.createWriteStream(path, {'flags':'a'});
     stream.once('open', function(fd) {
       stream.write(content+"\n");
       stream.end();
     });
-    res.send(200);
+    res.sendStatus(200);
   });
 };
