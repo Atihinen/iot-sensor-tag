@@ -9,6 +9,8 @@ Application utilizes [IBM BlueMix™](http://www-01.ibm.com/software/bluemix/) a
 
 With this application you can set tresholds to temperature (C), humidity (%) and for pressure (mbar) and it will also store the values to temp file in `/tmp/sensor.log` and also to MongoDB in BlueMix.
 
+![MonboLab](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/mongolab.png)
+
 ## Requirements
 
 * OS: OSX/Linux
@@ -22,6 +24,7 @@ With this application you can set tresholds to temperature (C), humidity (%) and
 * Login to BlueMix
     * Add IoT service
     * Add MongoLab service
+    * ![BlueMix](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/bluemix.png)
 * Create 2 config.properties files
     * ./blueconnector/
 
