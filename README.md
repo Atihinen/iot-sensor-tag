@@ -32,9 +32,11 @@ id=<your-comp-mac-address-without-colon>
 auth-method=token
 auth-token=<xxxxxx>
 ```
+
 Values are from BueMix IoT launch
 
     * ./display/
+
 
 ```
 apikey=<xxxx>
