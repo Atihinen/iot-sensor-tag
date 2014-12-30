@@ -4,7 +4,7 @@ This repo is forked from  [IBM Sensor Tag](https://github.com/IBM-Bluemix/iot-se
 
 ## Application
 
-![Application](https://dl-web.dropbox.com/get/public/projects/iot/app.png?_subject_uid=213069268&w=AACzUtl2ybYADy6MSs1RsCKvZ3EFYq7b2_gTlPTBmWyMug)
+![Application](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/app.png)
 Application utilizes [IBM BlueMix™](http://www-01.ibm.com/software/bluemix/) and Texas Instruments [CC2541 SensorTag](http://www.ti.com/tool/cc2541dk-sensor)
 
 With this application you can set tresholds to temperature (C), humidity (%) and for pressure (mbar) and it will also store the values to temp file in `/tmp/sensor.log` and also to MongoDB in BlueMix.
