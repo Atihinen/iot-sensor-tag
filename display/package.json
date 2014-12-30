@@ -12,7 +12,8 @@
       "jquery":"*",
       "ibm_db" : ">=0.0.1",
       "node-fs":"*",
-      "mongodb":"*"
+      "mongodb":"*",
+      "mongojs":"*"
    },
    "description": "Based on https://github.com/IBM-Bluemix/iot-sensor-tag/blob/master/subscribe/package.json",
    "license": "MIT",

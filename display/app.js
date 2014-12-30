@@ -23,6 +23,11 @@ var macUtil = require('getmac');
 var cfenv = require('cfenv');
 var properties = require('properties');
 var fs = require("fs");
+var mongo = require('mongodb');
+var mongojs = require('mongojs');
+var mongoDB;
+
+
 
 var appEnv = cfenv.getAppEnv();
 var instanceId = !appEnv.isLocal ? appEnv.app.instance_id : undefined;
@@ -43,6 +48,7 @@ if(instanceId && iotService && iotService != null) {
       var deviceId = macAddress.replace(/:/gi, '');
       console.log("Device MAC Address: " + deviceId);
       var org = cfg.apikey.split('-')[1];
+      mongoDB=cfg.mongoDB;
       start(deviceId, cfg.apikey, cfg.apitoken, org + '.messaging.internetofthings.ibmcloud.com', 
         '8883');
     });
@@ -163,12 +169,22 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort) {
     }
     var content = status+" "+sensor+": "+value;
     var path = "/tmp/sensor.log";
-    //TODO choose useable DB and use it instead of temp file
     var stream = fs.createWriteStream(path, {'flags':'a'});
     stream.once('open', function(fd) {
       stream.write(content+"\n");
       stream.end();
     });
+    var collections = ["logs"];
+    var db = mongojs.connect(mongoDB, collections);
+    db.logs.save({cont:content}, function(err, saved){
+      if( err  || !saved ){
+        console.log("Log not saved");
+      }
+      else {
+        console.log("Log saved");
+      }
+    });
+
     res.sendStatus(200);
   });
 };
