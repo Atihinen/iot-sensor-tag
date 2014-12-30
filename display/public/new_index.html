@@ -56,7 +56,10 @@
 												<input type="text" class="form-control alert-info" id="thermo-min" placeholder="Min" />
 											</div>
 											<div class="col-md-2">
-												<input type="text" class="form-control alert-danger" id="thermo-max" placeholder="Max" />
+												<div class="input-group">
+													<input type="text" class="form-control alert-danger" id="thermo-max" placeholder="Max" />
+													<div class="input-group-addon">C</div>
+												</div>
 											</div>
 											<div class="col-md2">
 												<input type="submit" value="Set" class="btn btn-primary" />
@@ -74,7 +77,10 @@
 												<input type="text" class="form-control alert-info" id="humidity-min" placeholder="Min" />
 											</div>
 											<div class="col-md-2">
-												<input type="text" class="form-control alert-danger" id="humidity-max" placeholder="Max" />
+												<div class="input-group">
+													<input type="text" class="form-control alert-danger" id="humidity-max" placeholder="Max" />
+													<div class="input-group-addon">%</div>
+												</div>
 											</div>
 											<div class="col-md2">
 												<input type="submit" value="Set" class="btn btn-primary" />
@@ -92,7 +98,10 @@
 												<input type="text" class="form-control alert-info" id="pressure-min" placeholder="Min" />
 											</div>
 											<div class="col-md-2">
-												<input type="text" class="form-control alert-danger" id="pressure-max" placeholder="Max" />
+												<div class="input-group">
+													<input type="text" class="form-control alert-danger" id="pressure-max" placeholder="Max" />
+													<div class="input-group-addon">mbar</div>
+												</div>
 											</div>
 											<div class="col-md2">
 												<input type="submit" value="Set" class="btn btn-primary" />
@@ -116,18 +125,21 @@
 								<div class="input-group" title="Temperature">
 									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/thermo.png" /></span></div>
 									<input type="text" class="form-control" id="thermo-val" placeholder="Value not set" />
+									<div class="input-group-addon">C</div>
 								</div>
 							</li>
 							<li>
 								<div class="input-group" title="Humidity">
 									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/humidity.png" /></span></div>
 									<input type="text" class="form-control" id="humidity-val" placeholder="Value not set" />
+									<div class="input-group-addon">%</div>
 								</div>
 							</li>
 							<li>
 								<div class="input-group" title="Pressure">
 									<div class="input-group-addon"><span class="glyphicon"><img width="14" src="media/icons/pressure.png" /></span></div>
 									<input type="text" class="form-control" id="pressure-val" placeholder="Value not set" />
+									<div class="input-group-addon">mbar</div>
 								</div>
 							</li>
 						</ul>

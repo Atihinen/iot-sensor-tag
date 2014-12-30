@@ -77,7 +77,7 @@ air.onmessage = function(e) {
   //$("#objectTemp").html("air/objectTemp :: " + data.d.objTemp);
   $("#thermo-val").val(data.d.ambientTemp).trigger('change');
   $("#humidity-val").val(data.d.humidity).trigger('change');
-  $("#pressure-val").val(data.d.pressure);
+  $("#pressure-val").val(data.d.pressure).trigger('change');
   
 };
 function connectOnClick() {
