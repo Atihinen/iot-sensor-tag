@@ -2,42 +2,55 @@
 This repo is forked from  [IBM Sensor Tag](https://github.com/IBM-Bluemix/iot-sensor-tag
 )
 
-This repo contains the code needed to connect to [IBM's IoT Cloud](https://internetofthings.ibmcloud.com/#/) 
-and publish and retrieve data from a [Texas Instruments Sensor Tag](http://www.ti.com/tool/cc2541dk-sensor).
+## Application
 
-For a demonstration of the applications within this repo you can watch the following video
+![Image of Yaktocat](https://www.dropbox.com/s/u15c086qxw4cttp/app.png?dl=0)
+Application utilizes [IBM BlueMix™](http://www-01.ibm.com/software/bluemix/) and Texas Instruments [CC2541 SensorTag](http://www.ti.com/tool/cc2541dk-sensor)
 
-[![Demo](https://i.ytimg.com/vi/lZuq85EJGWo/0.jpg?time=1415806820552)](http://youtu.be/lZuq85EJGWo)
+With this application you can set tresholds to temperature (C), humidity (%) and for pressure (mbar) and it will also store the values to temp file in `/tmp/sensor.log` and also to MongoDB in BlueMix.
 
-The [publish directory](https://github.com/IBM-Bluemix/iot-sensor-tag/tree/master/publish) contains a Node.js application 
-that can be placed on any device connected to the internet and is capable of using Bluetooth low-energy 
-(LE) to connect to the Sensor Tag.  This application publishes sensor data from the Sensor Tag to the IBM IoT Cloud.
+## Requirements
 
-The [subscribe directory](https://github.com/IBM-Bluemix/iot-sensor-tag/tree/master/subscribe) contains a 
-Node.js application which connects to the IBM IoT Cloud and uses the Sensor Tag data in various ways.  
+* OS: OSX/Linux
+* TI CC2541 SensorTag
+* BlueMix account
+** Internet of Things (IoT) service with apikey
+** MonboLab service
 
-* An application to control an HTML5 presentation deck with the
-Sensor Tag buttons.  
-* An application which visualizes the temperature, accelerometer, gyroscope, and magnetometer
-data from the Sesnor Tag.
 
-The [node-red directory](https://github.com/IBM-Bluemix/iot-sensor-tag/tree/master/node-red) contains an exported flow 
-which you can import into your Node-RED instance of Bluemix to see the data being published from the Sensor Tag.
+## Setup
+* Login to BlueMix
+** Add IoT service
+** Add MongoLab service
+* Create 2 config.properties files
+** ./blueconnector/
+*** ```
+org=<xxxx>
+type=iotsample-ti-bbst
+id=<your-comp-mac-address-without-colon>
+auth-method=token
+auth-token=<xxxxxx>
+```
+*** Values are from BueMix IoT launch
+** ./display/
+*** ```
+apikey=<xxxx>
+apitoken=<xxxx>
+mongoDB=<user>:<password>@<host>.mongolab.com:<port>/<DB>
+```
+*** Values are from BlueMix IoT apikey + Monbolab service
+* Install needed requirements
+** ``` cd ./blueconnector ```
+** ``` npm install ```
+** ``` node sensort-tag.js ```
+*** **NOTICE** if you can't connect to  sensortag, check this [guide](https://github.com/IBM-Bluemix/iot-sensor-tag/blob/master/publish/README.md)
+** ``` cd ./display ```
+** ``` npm install ```
+**  ```node app.js ```
+** Open browser with [http://localhost:9999](http://localhost:9999)
 
-Here is a diagram that describes how the apps work with the IBM IoT Cloud and Bluemix.
+You're ready to go!
 
-<img src="subscribe/public/sensor-tag.jpg"/>
-
-## Other Videos
-
-Some of the content in these videos is outdated due to changes in Bluemix, but most
-of the content may still be relevant.
-
-### Short Version
-[![Short Version](https://i1.ytimg.com/vi/UubP2ld5AqE/0.jpg?v=53c552d1)](https://www.youtube.com/watch?v=UubP2ld5AqE)
-
-### Long Version
-[![Long Version](https://i1.ytimg.com/vi/u7VulZiGjU0/0.jpg?v=53c552d1)](https://www.youtube.com/watch?v=u7VulZiGjU0)
 
 ## License
 This code is licensed under Apache v2.  See the LICENSE file in the root of
