@@ -4,12 +4,14 @@ This repo is forked from  [IBM Sensor Tag](https://github.com/IBM-Bluemix/iot-se
 
 ## Application
 
+With the application you can e.g. check your environmental values (temperature, pressure & humidity) when your boss is breathing on your neck.
+
 ![Application](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/app.png)
 Application utilizes [IBM BlueMix™](http://www-01.ibm.com/software/bluemix/) and Texas Instruments [CC2541 SensorTag](http://www.ti.com/tool/cc2541dk-sensor)
 
-With this application you can set tresholds to temperature (C), humidity (%) and for pressure (mbar) and it will also store the values to temp file in `/tmp/sensor.log` and also to MongoDB in BlueMix.
+With this application you can set thresholds to temperature (C), humidity (%) and for pressure (mbar) and it will also store the values to temp file in `/tmp/sensor.log` and also to MongoDB in BlueMix.
 
-![MonboLab](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/mongolab.png)
+![MongoLab](https://raw.githubusercontent.com/Atihinen/iot-sensor-tag/master/display/public/media/mongolab.png)
 
 ## Requirements
 
@@ -17,7 +19,7 @@ With this application you can set tresholds to temperature (C), humidity (%) and
 * TI CC2541 SensorTag
 * BlueMix account
     * Internet of Things (IoT) service with apikey
-    * MonboLab service
+    * MongoLab service
 
 
 ## Setup
@@ -46,7 +48,7 @@ apikey=<xxxx>
 apitoken=<xxxx>
 mongoDB=<user>:<password>@<host>.mongolab.com:<port>/<DB>
 ```
-Values are from BlueMix IoT apikey + Monbolab service
+Values are from BlueMix IoT apikey + Mongolab service
 
 * Install needed requirements
 	* ``` cd ./blueconnector ```
